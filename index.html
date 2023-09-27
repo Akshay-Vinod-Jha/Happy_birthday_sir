@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
+        </style>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            overflow: hidden;
+            font-family: 'Croissant One', cursive;    
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom left,rgba(0,0,0,1),rgba(255,0,0,0.1)),url(./background.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            object-fit: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #message{
+            position: relative;
+            display: inline-block;
+            color: white;  
+            /* border: 5px solid white; */
+            left:50%;
+            transform: translate(-50%,100%);
+            align-self: flex-start;
+        }       
+        #hb{
+            display: inline;
+            font-size: clamp(1rem,2.5vw,3rem);
+                } 
+        #replace{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-left: clamp(5px,1.5vw,8px) solid white;
+            background:rgba(0,0,0,0.99);
+            top: 0;
+            left: 0;
+            animation: a 4s steps(15,end) infinite;
+            transition: all 0.1s linear;
+        }
+        @keyframes a {
+            0%{
+                left: 0%;
+            }
+            50%{
+                left: 105%;
+            }
+            100%{
+                left: 0%;
+            }
+        }
+
+        .grid-cantainer {
+            width: min(1200px,75vmin);
+            aspect-ratio: 1/1;
+            /* border: .1rem solid white; */
+            display:grid;
+            grid-auto-flow: column;
+            grid-template-columns: repeat(3,1fr);
+            margin-inline: auto;
+            position: absolute;
+            top: 20%;
+            /* gap: -5%; */
+        }
+        .grid-itmes {
+            /* border:.25rem solid red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all .2s linear;
+            gap: 2%;
+            animation:adi 1s linear forwards;
+        }
+        .items{
+            height: 30%;
+            width: 90%;
+            /* background-color: blue; */
+            border-radius: 1rem;
+            transition: all .2s linear;
+            box-shadow: 0px 0px 10px 1px black;
+            filter:brightness(0.5);
+        }
+        @keyframes adi{
+            0%{gap:100%;}
+            100%{gap:2%;}
+        }
+  
+        @keyframes sujit{
+            0%{left:0%;}
+            50%{left:35%;}
+            100%{
+                left:0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="message">
+        <h3 id="hb">😎Happy Birthday to you Ravi Sir🥳</h3>
+        <div id="replace"></div>
+        </div>
+        <div class="grid-cantainer">
+            <div class="grid-itmes first">
+                <div class="items first-item" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+                <div class="items first-item" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+            </div>
+            <div class="grid-itmes">
+                <div class="items second-item" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+                <div class="items second-item in" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+                <div class="items second-item" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+            </div>
+            <div class="grid-itmes">
+                <div class="items third-item" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+                <div class="items third-item in" onmouseover="call(this)" onmouseleave="reset(this)">
+                    </div>
+            </div>
+        </div>
+    <script>
+       const images = Array.from(document.getElementsByClassName("items"));
+       for(let i=0;i<images.length;i++){
+           images[i].style.background = `url(./ravi${i+1}.jpg)`;
+           images[i].style.backgroundPosition="center";
+           images[i].style.backgroundRepeat="no-repeat";
+           images[i].addEventListener(onclick,()=>{console.log("hello")})
+           if(i===3 || i===4 || i===6) {
+               images[i].style.backgroundSize="100% auto";
+            } else {
+                images[i].style.backgroundSize="auto 100%";
+            }
+            
+    }
+    // //hover
+    // images.forEach((single)=>{single.addEventListener(onmouseover,(single)=>{
+    //     single.style.backgroundSize="125%";
+    // })})
+    //call body
+    function call(rec){
+        rec.style.backgroundSize="auto 130%";
+        rec.style.filter="brightness(1.3)";
+        rec.style.boxShadow="0px 0px 7px 3px white";
+        rec.style.scale="1.05";
+    }
+    function reset(rec){
+        rec.style.filter="brightness(0.5)";
+        rec.style.boxShadow=" 0px 0px 10px 1px black";
+        if(rec==images[3] || rec==images[6]){
+        rec.style.scale="1";
+        rec.style.backgroundSize="100% auto";
+        }
+        else{
+        rec.style.backgroundSize="auto 100%";
+        }
+    }
+    </script>
+</body>
+</html>
